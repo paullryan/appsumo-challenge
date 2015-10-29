@@ -1,0 +1,32 @@
+<table>
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th>Author</th>
+      <th>Answers</th>
+      <th>
+        <a href="/add-question" data-tooltip="Add Survey Question" data-postion="top" data-delay="50" class="btn btn-floating blue tooltipped right">
+          <i class="mdi mdi-plus"></i>
+        </a>
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {{#each surveyQuestions}}
+      <tr>
+        <td>{{question}}</td>
+        <td>{{author.firstName}} {{author.lastName}}</td>
+        <td><a href="/answers/{{uuid}}">{{answers.length}}</a></td>
+        <td class="right">
+          {{#if archived}}
+            <a href="/api/v1/survey-question/secure/unarchive/{{uuid}}" class="btn blue accent-2">Unarchive</a>
+          {{else}}
+            <a href="/api/v1/survey-question/secure/archive/{{uuid}}" class="btn blue accent-2">Archive</a>
+          {{/if}}
+          <a href="/api/v1/survey-question/secure/{{uuid}}?_method=DELETE" class="btn grey lighten-1">Delete</a>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

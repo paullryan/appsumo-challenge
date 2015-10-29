@@ -1,0 +1,39 @@
+{{#if isAdmin}}
+  <a href="#" class="btn btn-flat right" id="answer-btn">
+    Toggle Answers
+   </a>
+{{/if}}
+{{#each surveyQuestions}}
+  <div class="question row">
+    <h4 class="black-text">{{question}}</h4>
+    <p>Answered {{answerStats.count}} Times</p>
+
+    {{#if optionQuestion}}
+      <div class="col s12">
+        <div class="row">
+          {{#each answerStats.optionStats}}
+            <div class="col s3 right-align">
+              <strong>Answered</strong> {{option}}:
+            </div>
+            <div class="col s9">
+              {{percentage}}%({{count}})
+            </div>
+          {{/each}}
+        </div>
+      </div>
+    {{else}}
+      <div class="answers">
+        {{#if ../../isAdmin}}
+          <h5>Answers:</h5>
+          {{#each answers}}
+            <div class="card">
+              <div class="card-content">
+                {{answer}}
+              </div>
+            </div>
+          {{/each}}
+        {{/if}}
+      </div>
+    {{/if}}
+  </div>
+{{/each}}

@@ -1,0 +1,62 @@
+{
+  "name": "appsumo-challenge",
+  "version": "0.0.0",
+  "description": "Challenge Application for AppSumo",
+  "homepage": "",
+  "repository": "simplycomplexco/appsumo-challenge",
+  "author": {
+    "name": "Paul Ryan",
+    "email": "paul@simplycomplex.co",
+    "url": "http://simplycomplex.co"
+  },
+  "files": [
+    "lib"
+  ],
+  "main": "lib/index.js",
+  "keywords": [],
+  "devDependencies": {
+    "browser-sync": "^2.9.11",
+    "glob-array": "^0.1.2",
+    "gulp": "^3.6.0",
+    "gulp-batch": "^1.0.5",
+    "gulp-concat": "^2.6.0",
+    "gulp-eslint": "^1.0.0",
+    "gulp-exclude-gitignore": "^1.0.0",
+    "gulp-istanbul": "^0.9.0",
+    "gulp-jsdoc-to-markdown": "^1.1.1",
+    "gulp-mocha": "^2.0.0",
+    "gulp-nsp": "^0.4.5",
+    "gulp-plumber": "^1.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-util": "^3.0.7",
+    "gulp-watch": "^4.3.5",
+    "pm2": "^0.15.7"
+  },
+  "scripts": {
+    "prepublish": "gulp prepublish",
+    "test": "gulp"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "colors": "^1.1.2",
+    "colour": "^0.7.1",
+    "cookie-parser": "^1.4.0",
+    "dotenv": "^1.2.0",
+    "express": "^4.13.3",
+    "express-formidable": "^0.1.1",
+    "express-handlebars": "^2.0.1",
+    "express-session": "^1.12.0",
+    "hogan-express": "^0.5.2",
+    "method-override": "^2.3.5",
+    "morgan": "^1.6.1",
+    "mysql": "^2.9.0",
+    "passport": "^0.3.0",
+    "passport-facebook": "^2.0.0",
+    "passport-google-oauth": "^0.2.0",
+    "passport-twitter": "^1.0.3",
+    "sequelize": "^3.12.2",
+    "serve-favicon": "^2.3.0",
+    "session-file-store": "0.0.21"
+  }
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{siteTitle}}</title>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg==" crossorigin="anonymous">
+    <link href="/components/mdi/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/main.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  </head>
+  <body>
+    <main>
+      <section class="hero-banner">
+        <div class="container">
+          <div class="row valign-wrapper">
+            <div class="col m10">
+              <h1 class="header"><a href="/" class="tooltipped" data-tooltip="Back to Survey">{{pageTitle}}</a></h1>
+              <h4 class="light">{{pageSubtitle}}</h4>
+            </div>
+            <div class="col m2 commands">
+              {{#if isAuthenticated}}
+                <a class="waves-effect btn-floating blue waves-accent-3 valign right tooltipped" data-tooltip="Logout" href="/logout">
+                  <i class="mdi mdi-logout"></i>
+                </a>
+                {{#if isAdmin}}
+                  <a class="waves-effect btn-flat valign right " href="/manage">
+                    Manage
+                  </a>
+                {{/if}}
+              {{else}}
+                <a class="waves-effect btn-floating blue waves-accent-3 valign right tooltipped" data-tooltip="Login" href="/login">
+                  <i class="mdi mdi-login"></i>
+                </a>
+              {{/if}}
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="container">
+        {{{body}}}
+      </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

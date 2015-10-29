@@ -1,0 +1,39 @@
+{{#with question}}
+<div class="question row">
+  <p>Answered {{answerStats.count}} Times</p>
+
+  <div class="col s12">
+    <div class="row">
+      {{#each answerStats.optionStats}}
+        <div class="col s3 right-align">
+          <strong>Answered</strong> {{option}}:
+        </div>
+        <div class="col s9">
+          {{percentage}}%({{count}})
+        </div>
+      {{/each}}
+    </div>
+  </div>
+  <div class="answers">
+    <h5>Answers:</h5>
+    {{#each answers}}
+      <div class="card">
+        <div class="card-content">
+          {{#if author}}
+            <div class="card-title blue-text text-darken-2">
+              <a href="mailto:{{author.email}}">
+                Answer By: {{author.firstName}} {{author.lastName}}
+              </a>
+            </div>
+          {{else}}
+            <div class="card-title grey-text">Anonymous Answer</div>
+          {{/if}}
+          <p>
+            {{answer}}
+          </p>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
+{{/with}}
