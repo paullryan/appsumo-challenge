@@ -1,9 +1,9 @@
 {
-  "name": "appsumo-challenge",
-  "version": "0.0.0",
+  "name": "@paullryan/appsumo-challenge",
+  "version": "0.1.0",
   "description": "Challenge Application for AppSumo",
   "homepage": "",
-  "repository": "simplycomplexco/appsumo-challenge",
+  "repository": "@paullryan/appsumo-challenge",
   "author": {
     "name": "Paul Ryan",
     "email": "paul@simplycomplex.co",
