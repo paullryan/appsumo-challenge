@@ -56,11 +56,9 @@ describe('routes/answer', function () {
     __db.query('SET FOREIGN_KEY_CHECKS = 0', {raw: true}).then(function(){
       return __db.sync({force: true}).then(function() {
         return sequelizeFixtures.loadFile(path.join(__baseDir, 'test/fixtures/db.js'), models).then(function(){
-          return;
+          return done();
         });
       });
-    }).then(function(){
-      done();
     }).catch(function(error){
       done(error);
     });
