@@ -58,6 +58,17 @@ You can also run a testing watch to quickly add more tests by running
 gulp mocha-watch
 ```
 
+## Suggested Future Improvements
+
+_Note: I have paths for each of these ready from other applications I've built but am leaving them out for brevity sake_
+
+* Finish Facebook authentication
+* Create user management in admin section
+* Switch to a SPA for the management console
+  * Breakout the SPA into it's own module and test server
+  * Link back to the test server in dev or utilize webpack version in prod
+* Have the ability to create multiple survey's and reference them through pretty links (e.g. <server>/my-best-survey-ever)
+
 ## License
 
 MIT © [Paul Ryan](http://simplycomplex.co)
