@@ -31,6 +31,7 @@ Requires a mysql with the database in DATABASE_NAME(default=appsumo-challenge) c
 ### In Development:
 
 ```sh
+npm install -g gulp
 gulp serve
 ```
 
@@ -44,6 +45,18 @@ node lib
 ## API documentation
 
 [API Docs](api)
+
+## Testing
+
+```sh
+npm test
+```
+
+You can also run a testing watch to quickly add more tests by running
+
+```sh
+gulp mocha-watch
+```
 
 ## License
 
