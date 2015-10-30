@@ -8,7 +8,7 @@ node_js:
   - "iojs"
 
 before_script:
-  - sh -c "mysql -e 'create database IF NOT EXISTS appsumo-challenge'"
+  - sh -c "mysql -e 'create database IF NOT EXISTS `appsumo-challenge`'"
   - npm install -g gulp
 
 services:
