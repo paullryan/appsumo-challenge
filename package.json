@@ -9,6 +9,7 @@
     "email": "paul@simplycomplex.co",
     "url": "http://simplycomplex.co"
   },
+  "engine": "node ~0.11",
   "files": [
     "lib"
   ],
