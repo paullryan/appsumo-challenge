@@ -8,10 +8,11 @@ node_js:
   - "iojs"
 
 before_script:
+  - sh -c "mysql -e 'create database IF NOT EXISTS appsumo-challange';"
   - npm install -g gulp
 
 services:
   - mysql
 
 env:
-  - DATABASE_NAME=appsumo-challenge-test DATABASE_USERNAME=travs DATABASE_PASSWORD= GOOGLE_SECRET=shh GOOGLE_ID=shh GOOGLE_EMAIL=shh@shh.shh
+  - DATABASE_USERNAME=travis DATABASE_PASSWORD= GOOGLE_SECRET=shh GOOGLE_ID=shh GOOGLE_EMAIL=shh@shh.shh
