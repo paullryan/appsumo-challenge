@@ -11,16 +11,28 @@
       </div>
     </section>
     <div class="row">
-      <form class="col s12">
-        <div class="input-field col m6 s12">
-          <input name="username" type="text" placeholder="Username">
+      <form action="/api/v1/user" method="POST" class="col s12">
+        <div class="row">
+          <div class="input-field col m6 s12">
+            <input name="firstName" type="text" placeholder="First Name" required>
+          </div>
+          <div class="input-field col m6 s12">
+            <input name="lastName" type="text" placeholder="Last Name" required>
+          </div>
         </div>
-        <div class="input-field col m6 s12">
-          <input name="password" type="password" placeholder="Password">
+        <div class="row">
+          <div class="input-field col m6 s12">
+            <input name="email" type="email" placeholder="Email/Username" required>
+          </div>
+          <div class="input-field col m6 s12">
+            <input name="password" type="password" placeholder="Password" required>
+          </div>
         </div>
-        <div class="col s12">
-          <a href="/login" class="btn-flat waves-blue waves-light right">Login</a>
-          <input name="submit" class="btn blue right" type="submit" value="Register">
+        <div class="row">
+          <div class="col s12">
+            <a href="/login" class="btn-flat waves-blue waves-light right">Login</a>
+            <input name="submit" class="btn blue right" type="submit" value="Register">
+          </div>
         </div>
       </form>
     </div>
