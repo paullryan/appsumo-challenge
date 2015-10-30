@@ -30,6 +30,7 @@
 
 
 * [routes/surveyQuestion](#module_routes/surveyQuestion)
+    * [~/secure(UUID)](#module_routes/surveyQuestion../secure) ⇒
     * [~/secure/()](#module_routes/surveyQuestion../secure/) ⇒
     * [~/secure/archive(UUID)](#module_routes/surveyQuestion../secure/archive) ⇒
     * [~/secure/unarchive(UUID)](#module_routes/surveyQuestion../secure/unarchive) ⇒
@@ -40,12 +41,15 @@
 
 ### Modules
 <dl>
+<dt><a href="#module_app">app</a></dt>
+<dd><p>Main application.</p>
+<p>Express based utilizing SequelizeJS and handlebars templates directly rendered.</p>
+</dd>
 <dt><a href="#module_auth">auth</a></dt>
 <dd><p>Utility for ensuring the user is authenticated and authorized.</p>
 </dd>
 <dt><a href="#module_index">index</a></dt>
-<dd><p>Main application.</p>
-<p>Express based utilizing SequelizeJS and handlebars templates directly rendered.</p>
+<dd><p>Main server runner.</p>
 </dd>
 <dt><a href="#module_middleware/passport-facebook">middleware/passport-facebook</a></dt>
 <dd><p>This is an express middleware for connecting to facebook utilizing <a href="http://passportjs.org/">Passport</a>.</p>
@@ -55,6 +59,12 @@
 <dt><a href="#module_middleware/passport-google">middleware/passport-google</a></dt>
 <dd><p>This is an express middleware for connecting to google plus utilizing <a href="http://passportjs.org/">Passport</a>.</p>
 <p><em>Note: This requires a valid client setup from the google developer console for OAuth2 Credentials and the Google+ API enabled</em></p>
+</dd>
+<dt><a href="#module_middleware/passport-local">middleware/passport-local</a></dt>
+<dd><p>This is an express middleware for authenticating locally using <a href="http://passportjs.org/">Passport</a>.</p>
+</dd>
+<dt><a href="#module_middleware/passport-serialize">middleware/passport-serialize</a></dt>
+<dd><p>This is a utility for serializing and deserializing users for <a href="http://passportjs.org/">Passport</a> middlewares.</p>
 </dd>
 <dt><a href="#module_middleware/return">middleware/return</a></dt>
 <dd><p>This is an express middleware intended to be used as the end for an api call.</p>
@@ -80,7 +90,19 @@
 <dt><a href="#module_routes/surveyQuestion">routes/surveyQuestion</a></dt>
 <dd><p>API routes for manipulating <a href="#module_models/SurveyQuestion">models/SurveyQuestion</a></p>
 </dd>
+<dt><a href="#module_routes/user">routes/user</a></dt>
+<dd><p>API routes for manipulating <a href="#module_models/User">models/User</a></p>
+</dd>
 </dl>
+<a name="module_app"></a>
+### app
+Main application.
+
+Express based utilizing SequelizeJS and handlebars templates directly rendered.
+
+
+-
+
 <a name="module_auth"></a>
 ### auth
 Utility for ensuring the user is authenticated and authorized.
@@ -109,9 +131,7 @@ the higher you go in the roles.
 
 <a name="module_index"></a>
 ### index
-Main application.
-
-Express based utilizing SequelizeJS and handlebars templates directly rendered.
+Main server runner.
 
 
 -
@@ -188,6 +208,34 @@ The exppress callback for this middleware used as the OAuth2 Return.
 | req | The request |
 | res | The response |
 | next | A next callback to pass this on to |
+
+
+-
+
+<a name="module_middleware/passport-local"></a>
+### middleware/passport-local
+This is an express middleware for authenticating locally using [Passport](http://passportjs.org/).
+
+
+-
+
+<a name="module_middleware/passport-local..auth"></a>
+#### *middleware/passport-local*~auth(req, res, next)
+The auth exppress call for this middleware.
+
+
+| Param | Description |
+| --- | --- |
+| req | The request |
+| res | The response |
+| next | A next callback to pass this on to |
+
+
+-
+
+<a name="module_middleware/passport-serialize"></a>
+### middleware/passport-serialize
+This is a utility for serializing and deserializing users for [Passport](http://passportjs.org/) middlewares.
 
 
 -
@@ -460,6 +508,32 @@ API routes for manipulating [models/SurveyQuestion](#module_models/SurveyQuestio
 
 -
 
+<a name="module_routes/surveyQuestion../secure"></a>
+#### *routes/surveyQuestion*~/secure(UUID) ⇒
+**route**: /secure/:uuid
+
+**method**: GET
+
+
+| Param | Description |
+| --- | --- |
+| UUID | uuid - The uuid of the question to get |
+
+**Returns**: The question or a redirect to returnTo  
+**Example**  
+```js
+{
+   ...
+   uuid: 'f1f1d524-eee3-4d24-98e5-781a6bf7a739'
+   question: 'What do monkeys like more?',
+   type: 'select',
+   options: 'apples, oranges, bananas'
+   ...
+ }
+```
+
+-
+
 <a name="module_routes/surveyQuestion../secure/"></a>
 #### *routes/surveyQuestion*~/secure/() ⇒
 **route**: /secure/
@@ -547,6 +621,35 @@ API routes for manipulating [models/SurveyQuestion](#module_models/SurveyQuestio
 | UUID | uuid - The uuid of the question to delete |
 
 **Returns**: an empty success or a redirect to returnTo  
+
+-
+
+<a name="module_routes/user"></a>
+### routes/user
+API routes for manipulating [models/User](#module_models/User)
+
+
+-
+
+<a name="module_routes/user../"></a>
+#### *routes/user*~/() ⇒
+**route**: /
+
+**method**: POST
+
+**Returns**: The posted user or a redirect to returnTo  
+**Example**  
+```js
+{
+   ...
+   uuid: 'f1f1d524-eee3-4d24-98e5-781a6bf7a739'
+   firstName: 'bob',
+   lastName: 'anderson',
+   userName: 'bob@anderson.foo',
+   email: 'bob@anderson.foo'
+   ...
+ }
+```
 
 -
 
