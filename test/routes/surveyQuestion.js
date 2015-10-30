@@ -30,34 +30,37 @@
  */
 var path = require('path');
 
-require(path.join(__baseDir, 'test/fixtures/dbUtil'));
-
 var app = require(path.join(__baseDir, 'lib/app'));
 
 var chai = require('chai');
 var request = require('supertest');
 var sequelizeFixtures = require('sequelize-fixtures');
-var Sequelize = require('sequelize');
+
+var User = require(path.join(__baseDir, 'lib/models/User'));
+var Provider = require(path.join(__baseDir, 'lib/models/Provider'));
+var Answer = require(path.join(__baseDir, 'lib/models/Answer'));
+var SurveyQuestion = require(path.join(__baseDir, 'lib/models/SurveyQuestion'));
 
 var models = {
-  User: require(path.join(__baseDir, 'lib/models/User')),
-  Provider: require(path.join(__baseDir, 'lib/models/Provider')),
-  Answer: require(path.join(__baseDir, 'lib/models/Answer')),
-  SurveyQuestion: require(path.join(__baseDir, 'lib/models/SurveyQuestion'))
+  User: User,
+  Provider: Provider,
+  Answer: Answer,
+  SurveyQuestion: SurveyQuestion
 };
+
 var should = chai.should();
 
 var agent = request.agent(app);
 
 describe('routes/survey-question', function () {
   beforeEach(function(done){
-    __db.sync({force: true}).then(function() {
-      sequelizeFixtures.loadFile(path.join(__baseDir, 'test/fixtures/db.js'), models).then(function(){
-        done();
-      }).catch(function(error){
-        done(error);
+    __db.query('SET FOREIGN_KEY_CHECKS = 0', {raw: true}).then(function(){
+      return __db.sync({force: true}).then(function() {
+        return sequelizeFixtures.loadFile(path.join(__baseDir, 'test/fixtures/db.js'), models);
       });
-    }).catch(function(error) {
+    }).then(function(){
+      done();
+    }).catch(function(error){
       done(error);
     });
   });

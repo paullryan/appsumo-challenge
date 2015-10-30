@@ -30,53 +30,54 @@
  */
 var path = require('path');
 
-require(path.join(__baseDir, 'test/fixtures/dbUtil'));
-
+var app = require(path.join(__baseDir, 'lib/app'));
 var chai = require('chai');
 var request = require('supertest');
-var express = require('express');
-var bodyParser = require('body-parser');
 var sequelizeFixtures = require('sequelize-fixtures');
-var Sequelize = require('sequelize');
 
 var answerRouter = require(path.join(__baseDir, 'lib/routes/answer'));
+var User = require(path.join(__baseDir, 'lib/models/User'));
+var Provider = require(path.join(__baseDir, 'lib/models/Provider'));
+var Answer = require(path.join(__baseDir, 'lib/models/Answer'));
+var SurveyQuestion = require(path.join(__baseDir, 'lib/models/SurveyQuestion'));
 
 var models = {
-  User: require(path.join(__baseDir, 'lib/models/User')),
-  Provider: require(path.join(__baseDir, 'lib/models/Provider')),
-  Answer: require(path.join(__baseDir, 'lib/models/Answer')),
-  SurveyQuestion: require(path.join(__baseDir, 'lib/models/SurveyQuestion'))
+  User: User,
+  Provider: Provider,
+  Answer: Answer,
+  SurveyQuestion: SurveyQuestion
 };
 var should = chai.should();
 
-var app = express();
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use('/', answerRouter);
 var agent = request.agent(app);
 
 describe('routes/answer', function () {
-  before(function(done){
-    __db.sync({force: true}).then(function() {
-      sequelizeFixtures.loadFile(path.join(__baseDir, 'test/fixtures/db.js'), models).then(function(){
-        done();
-      }).catch(function(error){
-        done(error);
-      });
-    }).catch(function(error) {
-      done(error);
-    });
-  });
   beforeEach(function(done){
-    models.Answer.sync({force: true}).then(function(){
+    __db.query('SET FOREIGN_KEY_CHECKS = 0', {raw: true}).then(function(){
+      return __db.sync({force: true}).then(function() {
+        return sequelizeFixtures.loadFile(path.join(__baseDir, 'test/fixtures/db.js'), models).then(function(){
+          return;
+        });
+      });
+    }).then(function(){
       done();
     }).catch(function(error){
       done(error);
     });
-  })
-  it('should accept and answer from an anonymous user', function(done){
-    models.SurveyQuestion.findOne({}).then(function(question){
-      agent.post('/')
+  });
+  describe("#accept", function(){
+    var question;
+    beforeEach(function(done){
+      SurveyQuestion.findOne({}).then(function(finalQuestion){
+        question = finalQuestion.get({plain: true});
+        done();
+      }).catch(function(error){
+        done(error);
+      })
+    });
+
+    it('should accept and answer from an anonymous user', function(done){
+      agent.post('/api/v1/answer')
         .send('question-' + question.uuid + '=apples')
         .expect(200)
         .expect('Content-Type', /json/)
@@ -87,10 +88,8 @@ describe('routes/answer', function () {
         })
         .end(done);
     });
-  });
-  it('should accept multiple answers for the same question', function(done){
-    models.SurveyQuestion.findOne({}).then(function(question){
-      agent.post('/')
+    it('should accept multiple answers for the same question', function(done){
+      agent.post('/api/v1/answer')
         .send('question-' + question.uuid + '=apples')
         .expect(200)
         .expect('Content-Type', /json/)
@@ -103,7 +102,7 @@ describe('routes/answer', function () {
           if(err){
             return done(err);
           }
-          agent.post('/')
+          agent.post('/api/v1/answer')
             .send('question-' + question.uuid + '=oranges')
             .expect(200)
             .expect('Content-Type', /json/)

@@ -1,4 +1,4 @@
-# appsumo-challenge [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
+# appsumo-challenge [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
 > Challenge Application for AppSumo Team
 
 
@@ -63,9 +63,7 @@ gulp mocha-watch
 MIT © [Paul Ryan](http://simplycomplex.co)
 
 
-[npm-image]: https://badge.fury.io/js/appsumo-challenge.svg
-[npm-url]: https://npmjs.org/package/appsumo-challenge
-[travis-image]: https://travis-ci.org/simplycomplexco/appsumo-challenge.svg?branch=master
+[travis-image]: https://travis-ci.org/paullryan/appsumo-challenge.svg?branch=master
 [travis-url]: https://travis-ci.org/paullryan/appsumo-challenge
 [daviddm-image]: https://david-dm.org/paullryan/appsumo-challenge.svg?theme=shields.io
 [daviddm-url]: https://david-dm.org/paullryan/appsumo-challenge
