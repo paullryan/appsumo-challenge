@@ -14,7 +14,7 @@ $ npm install --save appsumo-challenge
 ### Configuration
 Utilizes [dotenv](https://github.com/motdotla/dotenv) for configuration variables.
 
-**Example:**
+**Example .env file:**
 ```sh
 DATABASE_NAME=cool_db
 DATABASE_USERNAME=your database username
@@ -40,6 +40,10 @@ I highly recommend you use a manager like pm2 to manage the process restarts how
 ```sh
 node lib
 ```
+
+## API documentation
+
+[API Docs](api)
 
 ## License
 

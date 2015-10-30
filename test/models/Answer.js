@@ -25,21 +25,25 @@
 'use strict';
 
 /**
- * @module middleware/return
- * @description This is an express middleware intended to be used as the end for an api call.
+ * @module test/models/Answer
+ * @description Test model Answer.
  */
+var path = require('path');
 
-/**
- * This is used to determine if the page needs to be re-routed or if the user
- * was an api user and is expecting a raw json output.
- * @param req - The request
- * @param res - The response
- */
-module.exports = function(req, res){
-  if(req.session && req.session.returnTo){
-    var returnTo = req.session.returnTo;
-    delete req.session.returnTo;
-    return res.redirect(returnTo);
-  }
-  res.json(req.returnData);
-}
+require(path.join(__baseDir, 'test/fixtures/dbUtil'));
+
+var Answer = require(path.join(__baseDir, 'lib/models/Answer'));
+
+describe('Answer', function() {
+  before(function(done) {
+    Answer.sync({force: true}).then(function() {
+        done();
+      }).catch(function(error) {
+        done(error);
+      });
+  });
+
+  describe('#create', function() {
+
+  });
+});

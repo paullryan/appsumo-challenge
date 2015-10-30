@@ -6,7 +6,8 @@ module.exports = {
     port: parseInt(process.env.DATABASE_PORT, 10) || 3306,
     username: process.env.DATABASE_USERNAME, // Must be set in .env
     password: process.env.DATABASE_PASSWORD, // Must be set in .env
-    name: process.env.DATABASE_NAME || 'appsumo-challenge'
+    name: process.env.DATABASE_NAME || 'appsumo-challenge',
+    logging: false
   },
   auth: {
     google: {

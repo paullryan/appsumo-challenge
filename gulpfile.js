@@ -20,11 +20,13 @@ var rename = require('gulp-rename');
 var concat = require('gulp-concat');
 var globArray = require('glob-array');
 
+global.__baseDir = __dirname;
+
 var PROCESS_CONFIG = {
   name: pkg.name,
   script: 'lib',
-  error_file: path.normalize(__dirname + '/' + pkg.name + '.log'),
-  out_file: path.normalize(__dirname + '/' + pkg.name + '.log'),
+  error_file: path.normalize(__dirname + '/server.log'),
+  out_file: path.normalize(__dirname + '/server.log'),
   merge_logs: true,
   env: {
     NODE_ENV: 'development',
@@ -63,20 +65,32 @@ gulp.task('pre-test', function () {
 });
 
 gulp.task('test', ['pre-test'], function (cb) {
-  var mochaErr;
+  var mochaError;
 
   gulp.src('test/**/*.js')
     .pipe(plumber())
     .pipe(mocha({reporter: 'spec'}))
     .on('error', function (err) {
-      mochaErr = err;
+      if(!err.stack) {
+        mochaError = err;
+      } else {
+        throw err;
+      }
     })
     .pipe(istanbul.writeReports())
     .on('end', function () {
-      if(mochaError.stack){
+      if(mochaError && mochaError.stack){
         console.error(mochaError.stack);
       }
+      process.exit(mochaError ? 1 : 0);
     });
+})
+
+gulp.task('lite-test', function () {
+  gulp.src('test/**/*.js')
+    .pipe(plumber())
+    .pipe(mocha({reporter: 'spec'}))
+    .on('error', errorHandler);
 });
 
 gulp.task('browser-sync', ['pm2:start'], function() {
@@ -117,7 +131,7 @@ gulp.task('pm2:restart', function(cb){
 });
 
 gulp.task('watch', function(){
-  watch(['lib/**/*'], batch(function(events, done){
+  watch(['lib/**/*', 'config.js'], batch(function(events, done){
     gulp.start('pm2:restart', done);
   }));
 });
@@ -140,6 +154,13 @@ gulp.task('docs', function(){
     })
     .pipe(gulp.dest('api'));
 });
+
+gulp.task('mocha-watch', ['lite-test'], function(){
+  watch(['test/**/*', 'lib/**/*', 'config.js'], batch(function(events, done){
+    gulp.start('lite-test', done);
+  }));
+});
+
 
 gulp.task('prepublish', ['nsp']);
 gulp.task('serve', ['browser-sync', 'watch']);

@@ -1,5 +1,28 @@
 language: node_js
 node_js:
-  - '0.10'
-  - '0.12'
-  - 'iojs'
+  - "4.1"
+  - "4.0"
+  - "0.12"
+  - "0.11"
+  - "0.10"
+  - "0.8"
+  - "0.6"
+  - "iojs"
+
+before_script:
+  - npm install -g gulp
+
+mysql:
+  adapter: mysql2
+  database: appsumo-challenge
+  username: test
+  password: password
+  encoding: utf8
+
+env:
+  - DB=mysql
+  - DATABASE_USERNAME=test
+  - DATABASE_PASSWORD=password
+  - GOOGLE_SECRET=shh
+  - GOOGLE_ID=shh
+  - GOOGLE_EMAIL=shh@shh.shh

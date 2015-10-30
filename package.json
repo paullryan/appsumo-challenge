@@ -16,6 +16,7 @@
   "keywords": [],
   "devDependencies": {
     "browser-sync": "^2.9.11",
+    "chai": "^3.4.0",
     "glob-array": "^0.1.2",
     "gulp": "^3.6.0",
     "gulp-batch": "^1.0.5",
@@ -30,11 +31,14 @@
     "gulp-rename": "^1.2.2",
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.5",
-    "pm2": "^0.15.7"
+    "pm2": "^0.15.7",
+    "sequelize-fixtures": "^0.4.8",
+    "superagent": "^1.4.0",
+    "supertest": "^1.1.0",
+    "supertest-session": "^1.2.0"
   },
   "scripts": {
-    "prepublish": "gulp prepublish",
-    "test": "gulp"
+    "test": "gulp test"
   },
   "license": "MIT",
   "dependencies": {
@@ -52,9 +56,9 @@
     "morgan": "^1.6.1",
     "mysql": "^2.9.0",
     "passport": "^0.3.0",
-    "passport-facebook": "^2.0.0",
     "passport-google-oauth": "^0.2.0",
-    "passport-twitter": "^1.0.3",
+    "passport-local": "^1.0.0",
+    "password-hash": "^1.2.2",
     "sequelize": "^3.12.2",
     "serve-favicon": "^2.3.0",
     "session-file-store": "0.0.21"
