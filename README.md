@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-$ npm install --save appsumo-challenge
+$ npm install
 ```
 
 
@@ -27,6 +27,8 @@ COOKIE_SECRET=A really secret secret
 ```
 
 Requires a mysql with the database in DATABASE_NAME(default=appsumo-challenge) created.  
+
+_Note: Google credentials are for Google OAuth 2, see [API documentation for more information](https://github.com/paullryan/appsumo-challenge/tree/master/api#module_middleware/passport-google), you can ignore this OAuth setup by just having dummy values for the gogle credentials_
 
 ### In Development:
 
