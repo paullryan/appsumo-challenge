@@ -5,6 +5,8 @@
 ## Install
 
 ```sh
+$ git clone <this-repo>
+$ cd appsumo-challenge
 $ npm install
 ```
 
