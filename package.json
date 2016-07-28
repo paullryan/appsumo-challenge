@@ -39,6 +39,7 @@
     "supertest-session": "^1.2.0"
   },
   "scripts": {
+    "start": "node lib",
     "test": "gulp test"
   },
   "license": "MIT",

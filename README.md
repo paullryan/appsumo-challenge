@@ -1,13 +1,14 @@
 # appsumo-challenge [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
 > Challenge Application for AppSumo Team
 
+This is a survey application like survey monkey where you can create survey's an have users go through the survey.
+
 
 ## Install
 
 ```sh
 $ npm install --save appsumo-challenge
 ```
-
 
 ## Usage
 
@@ -28,11 +29,13 @@ COOKIE_SECRET=A really secret secret
 
 Requires a mysql with the database in DATABASE_NAME(default=appsumo-challenge) created.  
 
+To create survey's you need to be an admin so after signing a user up with emal and password make them an `admin` role from your db in the users table.
+
+
 ### In Development:
 
 ```sh
-npm install -g gulp
-gulp serve
+npm start
 ```
 
 ### In Production
