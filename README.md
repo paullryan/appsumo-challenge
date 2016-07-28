@@ -7,7 +7,7 @@ This is a survey application like survey monkey where you can create survey's an
 ## Install
 
 ```sh
-$ git clone <this-repo>
+$ git clone <this-repo> or unzip
 $ cd appsumo-challenge
 $ npm install
 ```
