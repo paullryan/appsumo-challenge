@@ -7,7 +7,9 @@ This is a survey application like survey monkey where you can create survey's an
 ## Install
 
 ```sh
-$ npm install --save appsumo-challenge
+$ git clone <this-repo>
+$ cd appsumo-challenge
+$ npm install
 ```
 
 ## Usage
@@ -31,6 +33,7 @@ Requires a mysql with the database in DATABASE_NAME(default=appsumo-challenge) c
 
 To create survey's you need to be an admin so after signing a user up with emal and password make them an `admin` role from your db in the users table.
 
+_Note: Google credentials are for Google OAuth 2, see [API documentation for more information](https://github.com/paullryan/appsumo-challenge/tree/master/api#module_middleware/passport-google), you can ignore this OAuth setup by just having dummy values for the gogle credentials_
 
 ### In Development:
 
